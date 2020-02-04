@@ -1,7 +1,10 @@
 package com.kata.tennis.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.LinkedList;
 import java.util.Optional;
@@ -10,6 +13,8 @@ import java.util.Optional;
 @Data
 @AllArgsConstructor
 public class ScorePlayer {
+
+
 
     private int numberPointsOfGameWonByPlayer;
     private LinkedList<GamesAndMaybeTieBreakPoints> numberGamesWonByPlayerBySet;

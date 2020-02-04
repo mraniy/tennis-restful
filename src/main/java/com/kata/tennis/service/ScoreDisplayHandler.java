@@ -3,10 +3,12 @@ package com.kata.tennis.service;
 import com.kata.tennis.model.EnumPoint;
 import com.kata.tennis.model.Match;
 import com.kata.tennis.model.ScoreDisplayed;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 
+@Component
 public class ScoreDisplayHandler {
 
     public ScoreDisplayed show(Match match) {
