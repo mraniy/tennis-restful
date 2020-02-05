@@ -8,10 +8,10 @@ import com.kata.tennis.model.ScoreDisplayed;
 import com.kata.tennis.model.ScorePlayer;
 import com.kata.tennis.service.PointHander;
 import com.kata.tennis.service.ScoreDisplayHandler;
-import com.kata.tennis.service.UnitScoreHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,24 +31,13 @@ public class RandomMatchRetriever {
         this.pointHandler = pointHandler;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/random" , method = RequestMethod.GET)
-    public Match retrieveRandomMatch() {
-
-        Match match = getMatch();
-        while(!match.getWinner().isPresent()) {
-            generatePointAndGiveItToRandomPlayer(match);
-        }
-        return match;
-    }
 
     private Match getMatch() {
-        Player federer = new Player("Federer", new ScorePlayer());
-        Player nadal = new Player("Nadal", new ScorePlayer());
-        return new Match(federer, nadal);
+        Player somePlayer1 = new Player("", new ScorePlayer());
+        Player somePlayer2 = new Player("", new ScorePlayer());
+        return new Match(somePlayer1, somePlayer2);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/randomWithHistory" , method = RequestMethod.GET)
     public List<ScoreDisplayed> retrieveRandomMatchWithItsHistory() throws JsonProcessingException {
         List<ScoreDisplayed> scoreDisplayeds = new ArrayList<>();

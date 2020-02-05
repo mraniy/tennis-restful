@@ -2,8 +2,6 @@ package com.kata.tennis.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,10 +11,6 @@ import java.util.Optional;
 @NoArgsConstructor
 public class Match {
 
-    public Match deepCopy() throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(objectMapper.writeValueAsString(this), Match.class);
-    }
 
     private Player player1;
 
