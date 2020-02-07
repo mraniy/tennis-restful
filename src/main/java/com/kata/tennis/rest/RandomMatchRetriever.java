@@ -33,8 +33,8 @@ public class RandomMatchRetriever {
 
 
     private Match getMatch() {
-        Player somePlayer1 = new Player("", new ScorePlayer());
-        Player somePlayer2 = new Player("", new ScorePlayer());
+        Player somePlayer1 = new Player("", new ScorePlayer(),true);
+        Player somePlayer2 = new Player("", new ScorePlayer(),false);
         return new Match(somePlayer1, somePlayer2);
     }
 

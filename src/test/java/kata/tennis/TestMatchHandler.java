@@ -5,6 +5,7 @@ import com.kata.tennis.model.Player;
 import com.kata.tennis.model.ScorePlayer;
 import com.kata.tennis.service.MatchHandler;
 import com.kata.tennis.service.UnitScoreHandler;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -15,14 +16,19 @@ import static org.hamcrest.core.Is.is;
 
 public class TestMatchHandler {
 
+    @BeforeEach
+    public void setUp() {
+        MatchHandler.NUMBER_OF_SETS_TO_WIN_THE_TIE = 2;
+    }
+
     @Test
     public void should_player1_win_the_match_when_player1_reach_two_sets() {
         // given
 
         ScorePlayer scoreFederer = aScore(0, 2, 0);
         ScorePlayer scoreNadal = aScore(0, 1, 0);
-        Player federer = new Player("Federer",scoreFederer);
-        Player nadal = new Player("Nadal",scoreNadal);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,false);
 
         Match match = new Match(federer, nadal);
         // when
@@ -39,8 +45,8 @@ public class TestMatchHandler {
         // given
         ScorePlayer scoreFederer = aScore(0, 0, 0);
         ScorePlayer scoreNadal = aScore(0, 2, 0);
-        Player federer = new Player("Federer",scoreFederer);
-        Player nadal = new Player("Nadal",scoreNadal);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,false);
         Match match = new Match(federer, nadal);
         // when
         UnitScoreHandler matchHandler = new MatchHandler();

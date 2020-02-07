@@ -14,5 +14,7 @@ public class Player {
 
     private ScorePlayer scorePlayer;
 
+    private boolean serve;
+
 
 }

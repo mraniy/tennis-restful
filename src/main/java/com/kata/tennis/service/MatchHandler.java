@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class MatchHandler extends UnitScoreHandler {
 
-    private final int NUMBER_OF_SETS_TO_WIN_THE_TIE = 2;
+    public static int NUMBER_OF_SETS_TO_WIN_THE_TIE = 3;
 
     public MatchHandler() {
         next = Optional.empty();

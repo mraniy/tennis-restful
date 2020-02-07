@@ -19,8 +19,8 @@ public class TestSetHandler {
 
         ScorePlayer scoreFederer = aScore(0, 1, 3);
         ScorePlayer scoreNadal = aScore(0, 1, 6);
-        Player federer = new Player("Federer",scoreFederer);
-        Player nadal = new Player("Nadal",scoreNadal);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,false);
         Match match = new Match(federer, nadal);
         // when
         UnitScoreHandler setHandler = new SetHandler();
@@ -35,8 +35,8 @@ public class TestSetHandler {
 
         ScorePlayer scoreFederer = aScore(0, 1, 7);
         ScorePlayer scoreNadal = aScore(0, 1, 6);
-        Player federer = new Player("Federer",scoreFederer);
-        Player nadal = new Player("Nadal",scoreNadal);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,false);
         Match match = new Match(federer, nadal);
         // when
         UnitScoreHandler setHandler = new SetHandler();

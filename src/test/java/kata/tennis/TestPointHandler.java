@@ -24,8 +24,8 @@ public class TestPointHandler {
 
         ScorePlayer scoreFederer = aScore(numberPointsOfGameWonByFederer, 1, 4);
         ScorePlayer scoreNadal = aScore(numberPointsOfGameWonByNadal, 1, 2);
-        Player federer = new Player("Federer",scoreFederer);
-        Player nadal = new Player("Nadal",scoreNadal);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,false);
         Match match = new Match(federer, nadal);
         // when
         UnitScoreHandler pointHandler = new PointHander();

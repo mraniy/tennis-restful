@@ -25,8 +25,8 @@ public class TestUnitScoreHandler {
         ScorePlayer scoreFederer = aScore(3, 1, 5);
         ScorePlayer scoreNadal = aScore(2, 1, 4);
 
-        Player federer = new Player("Federer",scoreFederer);
-        Player nadal = new Player("Nadal",scoreNadal);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,false);
 
         Match match = new Match(federer, nadal);
         // when
@@ -41,8 +41,8 @@ public class TestUnitScoreHandler {
         // given
         ScorePlayer scoreFederer = aScore(7, 0, 4);
         ScorePlayer scoreNadal = aScore(8, 0, 5);
-        Player federer = new Player("Federer",scoreFederer);
-        Player nadal = new Player("Nadal",scoreNadal);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,true);
         Match match = new Match(federer, nadal);
         // when
 

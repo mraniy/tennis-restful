@@ -17,8 +17,13 @@ public class GameHandler extends UnitScoreHandler implements IGameHandler {
     public void refreshScore(Match match, Player player) {
         if (!itsATieBreak(match)) {
             boolean hasSomePlayerWonTheGame = incrementGamesIfSomePlayerWinsTheGame(match, player, LIMITTOWINTOGAME);
-            if(hasSomePlayerWonTheGame) setPointsToZero(match);
+            if (hasSomePlayerWonTheGame) {
+                setPointsToZero(match);
+                switchServes(match);
+            }
         }
     }
+
+
 
 }

@@ -6,6 +6,11 @@ import com.kata.tennis.model.ScorePlayer;
 
 public interface IGameHandler {
 
+    default void switchServes(Match match) {
+        match.getPlayer2().setServe(!match.getPlayer2().isServe());
+        match.getPlayer1().setServe(!match.getPlayer1().isServe());
+    }
+
     default boolean itsATieBreak(Match match) {
         int gamesWonByPlayer1 = match.getPlayer1().getScorePlayer().getNumberOfGamesWonsByPlayerForCurrentSet(match.getSetNumber());
         int gamesWonByPlayer2 = match.getPlayer2().getScorePlayer().getNumberOfGamesWonsByPlayerForCurrentSet(match.getSetNumber());

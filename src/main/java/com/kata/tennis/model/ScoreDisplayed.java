@@ -16,7 +16,6 @@ public class ScoreDisplayed {
         return objectMapper.readValue(objectMapper.writeValueAsString(this), ScoreDisplayed.class);
     }
 
-
     private LinkedList<GamesAndMaybeTieBreakPoints> gamesWonByPlayer1;
 
     private LinkedList<GamesAndMaybeTieBreakPoints> gamesWonByPlayer2;
@@ -28,6 +27,8 @@ public class ScoreDisplayed {
     private String pointsWonByPlayer1;
 
     private String pointsWonByPlayer2;
+
+    private String whoHasTheServe;
 
 
 }

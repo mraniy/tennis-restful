@@ -16,8 +16,8 @@ public class TestScoreDisplayHandler {
 
         ScorePlayer scoreFederer =  aScore(7, 1, 4);
         ScorePlayer scoreNadal = aScore(6, 1, 3);
-        Player federer = new Player("Federer",scoreFederer);
-        Player nadal = new Player("Nadal",scoreNadal);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,false);
         Match match = new Match(federer, nadal);
         // when
         ScoreDisplayHandler scoreDisplayHandler = new ScoreDisplayHandler();
@@ -35,8 +35,8 @@ public class TestScoreDisplayHandler {
 
         ScorePlayer scoreFederer = aScore(9, 1, 4);
         ScorePlayer scoreNadal = aScore(9, 1, 3);
-        Player federer = new Player("Federer",scoreFederer);
-        Player nadal = new Player("Nadal",scoreNadal);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,false);
         Match match = new Match(federer, nadal);
         // when
         ScoreDisplayHandler scoreDisplayHandler = new ScoreDisplayHandler();
@@ -49,13 +49,28 @@ public class TestScoreDisplayHandler {
     }
 
     @Test
+    public void should_return_correct_server() {
+        // given
+        ScorePlayer scoreFederer = aScore(3, 1, 4);
+        ScorePlayer scoreNadal = aScore(1, 1, 3);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,false);
+        Match match = new Match(federer, nadal);
+        // when
+        ScoreDisplayHandler scoreDisplayHandler = new ScoreDisplayHandler();
+        ScoreDisplayed scoreDisplayed = scoreDisplayHandler.show(match);
+        // then
+        assertThat(scoreDisplayed.getWhoHasTheServe() , is("Player1"));
+    }
+
+    @Test
     public void should_return_correct_score_when_normal_score() {
         // given
 
         ScorePlayer scoreFederer = aScore(3, 1, 4);
         ScorePlayer scoreNadal = aScore(1, 1, 3);
-        Player federer = new Player("Federer",scoreFederer);
-        Player nadal = new Player("Nadal",scoreNadal);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,false);
         Match match = new Match(federer, nadal);
         // when
         ScoreDisplayHandler scoreDisplayHandler = new ScoreDisplayHandler();

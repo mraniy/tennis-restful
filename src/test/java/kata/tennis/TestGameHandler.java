@@ -24,8 +24,8 @@ public class TestGameHandler {
 
         ScorePlayer scoreFederer = aScore(numberPointsOfGameWonByFederer, 1, 4);
         ScorePlayer scoreNadal = aScore(numberPointsOfGameWonByNadal, 2, 2);
-        Player federer = new Player("Federer",scoreFederer);
-        Player nadal = new Player("Nadal",scoreNadal);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,false);
         Match match = new Match(federer, nadal);
         // when
         UnitScoreHandler gameHandler = new GameHandler();
@@ -44,8 +44,8 @@ public class TestGameHandler {
 
         ScorePlayer scoreFederer = aScore(8, 1, numberGamesWonByFederer);
         ScorePlayer scoreNadal = aScore(6, 1, numberGamesWonByNadal);
-        Player federer = new Player("Federer",scoreFederer);
-        Player nadal = new Player("Nadal",scoreNadal);
+        Player federer = new Player("Federer",scoreFederer,true);
+        Player nadal = new Player("Nadal",scoreNadal,false);
         Match match = new Match(federer, nadal);
         // when
         UnitScoreHandler gameHandler = new GameHandler();
@@ -54,6 +54,24 @@ public class TestGameHandler {
         assertThat(match.getPlayer1().getScorePlayer().getNumberGamesWonByPlayerBySet().get(0).getGames(), is(5));
         assertThat(match.getPlayer1().getScorePlayer().getNumberPointsOfGameWonByPlayer(), is(0));
         assertThat(match.getPlayer2().getScorePlayer().getNumberPointsOfGameWonByPlayer(), is(0));
+    }
+
+    @Test
+    public void should_players_switch_serve_when_some_player_win_the_game() {
+        // given
+        boolean federerHasTheServe = true;
+        boolean nadalHasTheServe = false;
+        ScorePlayer scoreFederer = aScore(8, 1, 4);
+        ScorePlayer scoreNadal = aScore(6, 1, 2);
+        Player federer = new Player("Federer",scoreFederer, federerHasTheServe);
+        Player nadal = new Player("Nadal",scoreNadal, nadalHasTheServe);
+        Match match = new Match(federer, nadal);
+        // when
+        UnitScoreHandler gameHandler = new GameHandler();
+        gameHandler.refreshScore(match, federer);
+        //then
+        assertThat(match.getPlayer1().isServe(), is(false));
+        assertThat(match.getPlayer2().isServe(), is(true));
     }
 
 

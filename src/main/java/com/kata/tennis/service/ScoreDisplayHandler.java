@@ -13,11 +13,17 @@ public class ScoreDisplayHandler {
 
     public ScoreDisplayed show(Match match) {
         ScoreDisplayed scoreDisplayed = new ScoreDisplayed();
+        updateWhoHasTheServe(match,scoreDisplayed);
         updateScoreGamesDisplayed(match, scoreDisplayed);
         updateScoreSetsDisplayed(match, scoreDisplayed);
         updateScorePointsDisplayed(match, scoreDisplayed);
         return scoreDisplayed;
     }
+
+    private void updateWhoHasTheServe(Match match, ScoreDisplayed scoreDisplayed) {
+        scoreDisplayed.setWhoHasTheServe(match.getPlayer1().isServe() ? "Player1" : "Player2");
+    }
+
 
     private void updateScorePointsDisplayed(Match match, ScoreDisplayed scoreDisplayed) {
         int numberPointsOfGameWonByPlayer1 = match.getPlayer1().getScorePlayer().getNumberPointsOfGameWonByPlayer();

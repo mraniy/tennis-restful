@@ -20,6 +20,9 @@ public class TieBreakHandler extends UnitScoreHandler implements IGameHandler {
         if (itsATieBreak(match)) {
             addPointsRelatedToTieBreak(match);
             boolean hasSomePlayerWonTheGame = incrementGamesIfSomePlayerWinsTheGame(match, player, LIMITTOWINTOGAME);
+            int numberOfPointsPlayedInTheTieBreak = match.getPlayer2().getScorePlayer().getNumberPointsOfGameWonByPlayer()
+                    + match.getPlayer1().getScorePlayer().getNumberPointsOfGameWonByPlayer();
+            if(numberOfPointsPlayedInTheTieBreak%2 == 1 || hasSomePlayerWonTheGame) switchServes(match);
             if(hasSomePlayerWonTheGame) setPointsToZero(match);
         }
     }
