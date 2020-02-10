@@ -1,0 +1,42 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/openjdk:11.0.1-jdk
+
+    working_directory: ~/tennis-restful
+
+    steps:
+    # git pull
+    - checkout
+
+    # setup testing env
+    - run:
+        name: Login to DockerHub
+        command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+#    - run:
+ #       name: Decrpyt Secrets
+  #      command: openssl enc -d -aes-256-ecb -md md5 -in src/main/resources/application-prod.properties.secrets -out src/main/resources/application-prod.properties -k $SECRETS_KEY
+
+    # Download and cache dependencies
+    - restore_cache:
+        keys:
+        - tennis-restful-{{ checksum "pom.xml" }}
+
+    - run: mvn dependency:go-offline
+
+    - save_cache:
+        paths:
+        - ~/.m2
+        key: tennis-restful-{{ checksum "pom.xml" }}
+
+    # package into a jar
+    - run: mvn clean package
+
+    # build and push docker image to docker hub
+    - run: mvn clean compile jib:build  -Djib.to.auth.username=$DOCKER_USER -Djib.to.auth.password=$DOCKER_PASS -Dimage=mraniy/tennis
+
+    # store raw contents of src code
+    - store_artifacts:
+        path: target/classes
+        destination: tennis-restful
