@@ -3,8 +3,10 @@ package kata.tennis;
 import com.kata.tennis.model.Match;
 import com.kata.tennis.model.Player;
 import com.kata.tennis.model.ScorePlayer;
+import com.kata.tennis.service.MatchHandler;
 import com.kata.tennis.service.PointHander;
 import com.kata.tennis.service.UnitScoreHandler;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
@@ -18,6 +20,11 @@ import static org.hamcrest.core.Is.is;
 public class TestUnitScoreHandler {
 
     UnitScoreHandler pointHandler = new PointHander();
+
+    @BeforeEach
+    public void setUp() {
+        MatchHandler.NUMBER_OF_SETS_TO_WIN_THE_TIE = 2;
+    }
 
     @Test
     public void should_determine_match_winner_correctly() {
