@@ -14,9 +14,6 @@ jobs:
     - run:
         name: Login to DockerHub
         command: docker login -u $DOCKER_USER -p $DOCKER_PASS
-#    - run:
- #       name: Decrpyt Secrets
-  #      command: openssl enc -d -aes-256-ecb -md md5 -in src/main/resources/application-prod.properties.secrets -out src/main/resources/application-prod.properties -k $SECRETS_KEY
 
     # Download and cache dependencies
     - restore_cache:
@@ -34,7 +31,7 @@ jobs:
     - run: mvn clean package
 
     # build and push docker image to docker hub
-    - run: mvn clean compile jib:build  -Djib.to.auth.username=$DOCKER_USER -Djib.to.auth.password=$DOCKER_PASS -Dimage=mraniy/tennis
+    - run: $TRIGGER
 
     # store raw contents of src code
     - store_artifacts:
