@@ -31,7 +31,7 @@ jobs:
     - run: mvn clean package
 
     # build and push docker image to docker hub
-    - run: curl --data build=true -X POST https://hub.docker.com/api/build/v1/source/65e35d22-f68c-4a86-b4bd-3f987bcf6595/trigger/3283f274-4a23-41f4-b8a0-ceef5023ceea
+    - run: mvn clean compile jib:build  -Djib.to.auth.username=$DOCKER_USER -Djib.to.auth.password=$DOCKER_PASS -Dimage=mraniy/tennis
 
     # store raw contents of src code
     - store_artifacts:
