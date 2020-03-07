@@ -6,4 +6,6 @@ to connect to this back end project.
 
 the aim of this kata is to have a template enabling us to have a full continous integration.
 
-To launch the project just launch the TennisApplication as the main spring boot class.!
+To launch the project just launch the TennisApplication as the main spring boot class.
+
+we use CircleCI as a tool of CI.
