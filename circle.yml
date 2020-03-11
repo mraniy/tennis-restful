@@ -1,4 +1,7 @@
 version: 2
+orbs:
+  aws-ecr: circleci/aws-ecr@6.7.1
+  aws-ecs: circleci/aws-ecs@1.1.0
 jobs:
   build_and_deploy_to_dockerhub:
     docker:
@@ -38,6 +41,17 @@ jobs:
         path: target/classes
         destination: tennis-restful
 workflows:
+  build-and-deploy:
+    jobs:
+    - aws-ecr/build_and_push_image:
+        repo: "${AWS_RESOURCE_NAME_PREFIX}"
+        tag: "${CIRCLE_SHA1}"
+    - aws-ecs/deploy-service-update:
+        requires:
+        - aws-ecr/build_and_push_image # only run this job once aws-ecr/build_and_push_image has completed
+        family: "${AWS_RESOURCE_NAME_PREFIX}-service"
+        cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
+        container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX}-service,tag=${CIRCLE_SHA1}"
   version: 2
   continous_integration_continous_delivery: # name of your workflow
     jobs:
