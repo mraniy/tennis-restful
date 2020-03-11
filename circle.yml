@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build_and_deploy_to_dockerhub:
     docker:
     - image: circleci/openjdk:11.0.1-jdk
 
@@ -37,3 +37,9 @@ jobs:
     - store_artifacts:
         path: target/classes
         destination: tennis-restful
+workflows:
+  version: 2
+  continous_integration_continous_delivery: # name of your workflow
+    jobs:
+        - build_and_deploy_to_dockerhub
+
