@@ -12,6 +12,6 @@ RUN mvn -f /home/app/pom.xml clean package
 FROM openjdk:11-jre-slim
 COPY --from=build /home/app/target/tennis-0.0.1-SNAPSHOT.jar /usr/local/lib/tennis.jar
 EXPOSE 9008
-ENTRYPOINT ["java","-Dspring.profiles.active=dev","-jar","/usr/local/lib/tennis.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=rec","-jar","/usr/local/lib/tennis.jar"]
 #docker build -t mraniy/tennis .
 #sudo docker run -it -d -p 80:9008  mraniy/tennis
